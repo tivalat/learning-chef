@@ -1,0 +1,104 @@
+{
+  xx"name": "vagrant.vm",
+  "chef_environment": "_default",
+  "normal": {
+    "tags": [
+
+    ],
+    "magic_shell": {
+      "environment": {
+        "EDITOR": "vim"
+      }
+    },
+    "instance_role": "vagrant",
+    "vagrant": {
+      "config": {
+        "registry": {
+          "package": "Vagrant::Config::PackageConfig",
+          "linux": "Vagrant::Guest::Linux::LinuxConfig",
+          "vm": "Vagrant::Config::VMConfig",
+          "freebsd": "Vagrant::Guest::FreeBSD::FreeBSDConfig",
+          "ssh": "Vagrant::Config::SSHConfig",
+          "vagrant": "Vagrant::Config::VagrantConfig",
+          "solaris": "Vagrant::Guest::Solaris::SolarisConfig",
+          "nfs": "Vagrant::Config::NFSConfig"
+        },
+        "keys": {
+          "package": {
+            "name": "package.box"
+          },
+          "vm": {
+            "provisioners": [
+              "#<Vagrant::Config::VMConfig::Provisioner:0x7f0c7296ad68>",
+              "#<Vagrant::Config::VMConfig::Provisioner:0x7ff2aa733c38>",
+              "#<Vagrant::Config::VMConfig::Provisioner:0x7f5396d9ac38>"
+            ],
+            "networks": [
+
+            ],
+            "box_url": "https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_chef-11.4.4.box",
+            "box": "opscode-ubuntu-1204",
+            "forwarded_ports": [
+              {
+                "auto": true,
+                "guestport": 22,
+                "hostport": 2222,
+                "protocol": "tcp",
+                "name": "ssh",
+                "adapter": 1
+              }
+            ],
+            "customizations": [
+
+            ],
+            "base_mac": null,
+            "guest": "linux",
+            "defined_vms": {
+            },
+            "shared_folders": {
+              "v-root": {
+                "extra": null,
+                "guestpath": "/vagrant",
+                "create": false,
+                "hostpath": ".",
+                "group": null,
+                "transient": false,
+                "owner": null,
+                "nfs": false
+              }
+            },
+            "auto_port_range": "2200..2250",
+            "boot_mode": "headless",
+            "defined_vm_keys": [
+
+            ]
+          },
+          "ssh": {
+            "username": "vagrant",
+            "host": "127.0.0.1",
+            "max_tries": 100,
+            "forward_x11": false,
+            "guest_port": 22,
+            "timeout": 10,
+            "shell": "bash",
+            "forward_agent": false
+          },
+          "vagrant": {
+            "host": "detect",
+            "dotfile_name": ".vagrant"
+          },
+          "nfs": {
+            "map_gid": "auto",
+            "map_uid": "auto"
+          }
+        }
+      },
+      "directory": "/vagrant"
+    }
+  },
+  "run_list": [
+    "recipe[ntp]",
+    "recipe[apache2]",
+    "recipe[openldap]"
+  ]
+}
